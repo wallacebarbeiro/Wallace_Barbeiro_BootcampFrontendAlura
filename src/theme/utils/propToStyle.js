@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-unresolved
-import breakpointsMedia from './breakpointsMedia';
+import breakpointsMedia from './breakPointsMedia';
 
 function propToStyle(propName) {
   // eslint-disable-next-line func-names
