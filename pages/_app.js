@@ -15,8 +15,8 @@ export default function App({ Component, pageProps }) {
         <meta property="og:title" content="Projeto Portfólio" />
         <meta property="og:description" content="Meu primeiro projeto em React com Next.js e Styled Components" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="" />
-        <meta property="og:image" content="" />
+        <meta property="og:url" content="https://wallace-barbeiro-bootcamp-frontend-alura.vercel.app/" />
+        <meta property="og:image" content="https://wallace-barbeiro-bootcamp-frontend-alura.vercel.app/images/capa.png" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
