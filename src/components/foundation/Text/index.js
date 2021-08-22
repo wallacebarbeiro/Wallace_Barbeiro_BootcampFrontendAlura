@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import get from 'lodash/get';
 import styled, { css } from 'styled-components';
 import propToStyle from '../../../theme/utils/propToStyle';
 
@@ -18,10 +19,12 @@ export const TextStyleVariants = {
 
 const TextBase = styled.span` 
   ${({ variant }) => TextStyleVariants[variant]} 
+  color: ${(props) => get(props.theme, `colors.${props.color}.color`)};
   ${propToStyle('margin')} 
   ${propToStyle('fontSize')} 
   ${propToStyle('color')}
   ${propToStyle('display')}
+  ${propToStyle('maxWidth')}
 `;
 
 export default function Text({ tag, children, ...props }) {
@@ -39,10 +42,11 @@ export default function Text({ tag, children, ...props }) {
 Text.propTypes = {
   tag: PropTypes.string,
   variant: PropTypes.string,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 };
 
 Text.defaultProps = {
   tag: 'span',
   variant: 'paragraph1',
+  children: null,
 };
