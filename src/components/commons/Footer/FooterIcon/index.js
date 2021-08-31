@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/self-closing-comp */
 import React from 'react';
+// eslint-disable-next-line import/no-unresolved
 import Link from 'next/link';
 import styled from 'styled-components';
 import propToStyle from '../../../../theme/utils/propToStyle';

@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Lottie } from '@crello/react-lottie';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -27,66 +27,65 @@ function FormContent() {
     message: 'Digite a sua Mensagem!',
   });
 
-  function handleChange(event) {
+  const handleChange = useCallback((event) => {
     const fieldName = event.target.getAttribute('name');
     setUserInfo({
       ...userInfo,
       [fieldName]: event.target.value,
     });
-  }
+  });
 
   // eslint-disable-next-line max-len
   const isFormInvalid = userInfo.email.length === 0 || userInfo.nome.length === 0 || userInfo.message.length === 0;
-  const enviarForm = (event) => {
-    event.preventDefault();
-
-    setIsFormSubmited(true);
-
-    // Data Transfer Object
-    const userDTO = {
-      email: userInfo.email,
-      name: userInfo.nome,
-      message: userInfo.message,
-    };
-
-    fetch('https://contact-form-api-jamstack.herokuapp.com/message', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(userDTO),
-    })
-      .then((resostaDoServidor) => {
-        if (resostaDoServidor.ok) {
-          return resostaDoServidor.json();
-        }
-        throw new Error('Não foi possível cadastrar');
-      })
-      .then((respostacompleta) => {
-        setSubmissionsStatus(formStates.DONE);
-        // eslint-disable-next-line no-console
-        console.log(respostacompleta);
-      })
-      .catch((error) => {
-        setSubmissionsStatus(formStates.ERROR);
-        // eslint-disable-next-line no-console
-        console.log(error);
-      })
-      .finally(() => {
-        setTimeout(() => {
-          setSubmissionsStatus(formStates.DEFAULT);
-        }, 5000);
-        setUserInfo({
-          email: '',
-          nome: '',
-          message: 'Digite a sua Mensagem!',
-        });
-      });
-  };
 
   return (
     <form
-      onSubmit={enviarForm}
+      onSubmit={(event) => {
+        event.preventDefault();
+
+        setIsFormSubmited(true);
+
+        // Data Transfer Object
+        const userDTO = {
+          email: userInfo.email,
+          name: userInfo.nome,
+          message: userInfo.message,
+        };
+
+        fetch('https://contact-form-api-jamstack.herokuapp.com/message', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(userDTO),
+        })
+          .then((resostaDoServidor) => {
+            if (resostaDoServidor.ok) {
+              return resostaDoServidor.json();
+            }
+            throw new Error('Não foi possível cadastrar');
+          })
+          .then((respostacompleta) => {
+            setSubmissionsStatus(formStates.DONE);
+            // eslint-disable-next-line no-console
+            console.log(respostacompleta);
+          })
+          .catch((error) => {
+            setSubmissionsStatus(formStates.ERROR);
+            // eslint-disable-next-line no-console
+            console.log(error);
+          })
+          .finally(() => {
+            setTimeout(() => {
+              setSubmissionsStatus(formStates.DEFAULT);
+            }, 5000);
+            setUserInfo({
+              email: '',
+              nome: '',
+              message: 'Digite a sua Mensagem!',
+            });
+          });
+      }}
     >
       <Box
         backgroundColor="transparent"
