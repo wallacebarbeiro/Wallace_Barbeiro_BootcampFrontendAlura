@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import propToStyle from '../../../../theme/utils/propToStyle';
 
 const Image = styled.img`
+   ${propToStyle('width')}
    ${propToStyle('minWidth')}
+   ${propToStyle('maxWidth')}
    ${propToStyle('height')}
    object-fit: cover;
 `;

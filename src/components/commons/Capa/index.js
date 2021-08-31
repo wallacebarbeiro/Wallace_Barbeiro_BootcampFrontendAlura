@@ -1,6 +1,11 @@
+import React from 'react';
 import styled from 'styled-components';
+import WrapperContent from '../../foundation/WrapperContent';
+import Cabecalho from '../Cabecalho';
+import Text from '../../foundation/Text';
+import Box from '../../foundation/Box';
 
-const Capa = styled.div`
+const CapaWrapper = styled.div`
     position:relative;
     flex:1;
     display:flex;
@@ -10,55 +15,90 @@ const Capa = styled.div`
     justify-content:center; 
     overflow:hidden;
     min-height: 100vh;
-    &::before {
-        opacity: .4;
-        content:"";
-        display: inline-block;
-        width:300px;
-        top:-100px;
-        left:-100px;
-        position:absolute;
-        background: transparent url('../images/planet-svgrepo-com.svg') no-repeat left center;
+    background-image: url(/images/bg.png);
+    background-size: cover;
+    background-position: center center;
+    img {
+        object-fit: cover;
+        border-radius: 50%;
         height: 300px;
-    }
-    &::after {
-        opacity: .4;
-        content:"";
-        display: inline-block;
-        width:300px;
-        bottom:-65px;
-        right:-40px;
-        position:absolute;
-        background: transparent url('../images/astronaut-ingravity-svgrepo-com.svg') no-repeat left center;
-        height: 300px;
-    }
-     h2 {
-         position: relative;
-         text-align: right;
-         &::before {
-             position:absolute;
-             bottom:-8px;
-             right:0px;
-             content: "";
-             width:40%;
-             height: 6px;
-             background-color: #c100a5;
-             display:block;
-             -webkit-box-shadow:0px 20px 0px 0px #00b795;
-             box-shadow: 0px 20px 0px 0px #00b795;
-         }
-         &::after {
-             position:absolute;
-             bottom:-18px;
-             right:0px;
-             content: "";
-             width:30%;
-             height: 6px;
-             background-color: #3e3a3b;
-             display:block;
-         }
-
-     }
+        width: 300px;
+        }    
 `;
 
-export default Capa;
+export default function Capa() {
+  return (
+    <CapaWrapper>
+      <WrapperContent>
+        <Cabecalho />
+        <Box
+          backgroundColor="transparent"
+          display="flex"
+          height="100%"
+          margin="65px 0px 0px 0px"
+          flex="1"
+          alignItems="center"
+          maxWidth="900px"
+          gap="80px"
+          flexDirection={{
+            xs: 'column',
+            md: 'row',
+          }}
+          justifyContent={{
+            xs: 'flex-start',
+            md: 'space-between',
+          }}
+        >
+          <div>
+            <Text
+              tag="h1"
+              fontSize={{
+                xs: '44px',
+                md: '70px',
+              }}
+              margin={{
+                xs: '160px 0px 0px 0px',
+                md: '0px',
+              }}
+              fontWeight="100 !important"
+              color="#6ecacb !important"
+            >
+              <Text
+                tag="span"
+                fontSize="35px"
+                margin="0"
+                textAlign={{
+                  xs: 'center',
+                  md: 'left',
+                }}
+                fontWeight="300"
+                display="block"
+                color="#444"
+              >
+                Olá, eu sou
+              </Text>
+
+              Wallace Barbeiro
+            </Text>
+            <Text
+              tag="p"
+              fontSize="22px"
+              display="block"
+              textAlign={{
+                xs: 'center',
+                md: 'right',
+              }}
+              margin="10px 0px"
+              color="#444"
+            >
+              - Bem-vindo ao meu Portfólio!
+            </Text>
+
+          </div>
+
+          <img src="https://github.com/wallacebarbeiro.png" alt="Minha imagem" />
+        </Box>
+      </WrapperContent>
+    </CapaWrapper>
+  );
+}

@@ -6,16 +6,16 @@ import propToStyle from '../../../theme/utils/propToStyle';
 
 const SeloDestaque = styled.span`
     position: absolute;
-    color:#c100a5;
-    top:0px;
-    left: 0px;
-    background-color: #010203;
-    border: 2px solid #c100a5;
-    text-align:center;
+    color: #f0f0f0;
+    background-color: #e4168a;
+    text-align: center;
     z-index: 1;
     ${propToStyle('margin')};
     ${propToStyle('fontSize')};
-    ${propToStyle('padding')};    
+    ${propToStyle('fontWeight')}; 
+    ${propToStyle('padding')};
+    ${propToStyle('top')};
+    ${propToStyle('left')};      
 `;
 
 export const CardDestaqueContent = styled.div`
@@ -30,6 +30,7 @@ export const CardDestaqueContent = styled.div`
 export default function CardDestaque({ children }) {
   return (
     <Box
+      minWidth="100%"
       position="relative"
       flex="1"
       display="flex"
@@ -43,7 +44,7 @@ export default function CardDestaque({ children }) {
         xs: '0',
         md: '1',
       }}
-      minWidth="100%"
+      maxWidth="100%"
       flexBase="1"
       background="none"
       backgroundColor="transparent"
@@ -61,6 +62,15 @@ export default function CardDestaque({ children }) {
           xs: '5px 28px',
           md: '5px 42px',
         }}
+        top={{
+          xs: '10px',
+          md: '0px',
+        }}
+        left={{
+          xs: '10px',
+          md: '0px',
+        }}
+        fontWeight="100"
       >
         Destaque
       </SeloDestaque>

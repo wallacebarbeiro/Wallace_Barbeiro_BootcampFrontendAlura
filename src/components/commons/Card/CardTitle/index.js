@@ -4,9 +4,8 @@ import PropTypes from 'prop-types';
 import propToStyle from '../../../../theme/utils/propToStyle';
 
 const Title = styled.h3`
-    color: #00b795;
-    font-weight: 700;
-    letter-spacing: 2px;
+    color: #e4168a;
+    font-weight: 300;
     ${propToStyle('fontSize')}
     ${propToStyle('display')}
     ${propToStyle('textAlign')}

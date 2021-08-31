@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
+// eslint-disable-next-line import/no-unresolved
 import Head from 'next/head';
 import theme from '../src/theme';
 import GlobalStyle from '../src/theme/GlobalStyle';

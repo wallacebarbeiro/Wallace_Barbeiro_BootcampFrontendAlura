@@ -25,6 +25,10 @@ const TextBase = styled.span`
   ${propToStyle('color')}
   ${propToStyle('display')}
   ${propToStyle('maxWidth')}
+  ${propToStyle('fontWeight')}
+  ${propToStyle('padding')}
+  ${propToStyle('textAlign')}
+  ${propToStyle('backgroundColor')}
 `;
 
 export default function Text({ tag, children, ...props }) {
