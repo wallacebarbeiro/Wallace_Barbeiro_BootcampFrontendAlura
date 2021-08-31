@@ -5,6 +5,7 @@ import propToStyle from '../../../theme/utils/propToStyle';
 
 const Button = styled.button`
   background: transparent;
+  ${propToStyle('backgroundColor')}
   ${propToStyle('color')}
   ${propToStyle('fontSize')}
   ${propToStyle('border')}

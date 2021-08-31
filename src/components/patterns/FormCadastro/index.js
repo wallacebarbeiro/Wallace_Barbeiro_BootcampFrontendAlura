@@ -22,8 +22,8 @@ function FormContent() {
   const [submissionsStatus, setSubmissionsStatus] = React.useState(formStates.DEFAULT);
 
   const [userInfo, setUserInfo] = React.useState({
-    email: 'wallace1002',
-    nome: 'Wallace b',
+    email: '',
+    nome: '',
     message: 'Digite a sua Mensagem!',
   });
 
@@ -79,6 +79,11 @@ function FormContent() {
             setTimeout(() => {
               setSubmissionsStatus(formStates.DEFAULT);
             }, 5000);
+            setUserInfo({
+              email: '',
+              nome: '',
+              message: 'Digite a sua Mensagem!',
+            });
           });
       }}
     >
@@ -88,8 +93,11 @@ function FormContent() {
       >
         <Text
           tag="h1"
-          color="#00b795"
+          color="#e4168a"
+          fontSize="25px"
           maxWidth="367px"
+          fontWeight="300"
+          margin="10px 0px 35px 0px"
         >
           ENVIE SUA MENSAGEM
         </Text>
@@ -97,7 +105,8 @@ function FormContent() {
       <div>
         <label>
           <Text
-            color="white"
+            margin="10px 0px 5px 0px"
+            color="#444"
           >
             Seu Nome
           </Text>
@@ -113,7 +122,8 @@ function FormContent() {
       <div>
         <label>
           <Text
-            color="white"
+            margin="10px 0px 5px 0px"
+            color="#444"
           >
             Seu Email
           </Text>
@@ -130,7 +140,8 @@ function FormContent() {
       <div>
         <label>
           <Text
-            color="white"
+            margin="10px 0px 5px 0px"
+            color="#444"
           >
             Sua mensagem
           </Text>
@@ -145,17 +156,15 @@ function FormContent() {
         </label>
       </div>
       <BoxButton
-        border="1px solid #c100a5"
-        backgroundColor="#c100a5"
-        color="#131313"
-        fontWeight="600"
-        width="50%"
+        border="1px solid #fff"
+        backgroundColor="#6ecacb"
+        color="#fff"
+        fontWeight="400"
+        width="auto"
         fontSize="18px"
         textTransform="uppercase"
-        padding="10px"
-        marginLeft="50%"
+        padding="10px 20px"
         marginBottom="10px"
-        borderRadius="10px"
         cursor="pointer"
         type="submit"
         disabled={isFormInvalid}
@@ -167,7 +176,7 @@ function FormContent() {
         position: 'absolute',
         top: '0px',
         height: '100%',
-        background: 'rgb(0 0 0 / 78%)',
+        background: 'rgb(255 255 255 / 78%)',
         width: '100%',
         left: '0px',
         display: 'flex',
@@ -189,7 +198,7 @@ function FormContent() {
           position: 'absolute',
           top: '0px',
           height: '100%',
-          background: 'rgb(0 0 0 / 78%)',
+          background: 'rgb(255 255 255 / 78%)',
           width: '100%',
           left: '0px',
           display: 'flex',
@@ -209,18 +218,16 @@ function FormContent() {
   );
 }
 
-const Button = styled.button`
-    background: #00b795;
+const Button = styled.button`  
     color: #131313;
     font-weight: 900;
-    border: 1px solid #00b795;
-    border-radius: 40px;
+    border:0px;  
     width: 35px;
     height: 35px;
     font-size: 20px;
     position: absolute;
     right: 20px;
-    top: 28px;
+    top: 20px;
     cursor: pointer;
 `;
 

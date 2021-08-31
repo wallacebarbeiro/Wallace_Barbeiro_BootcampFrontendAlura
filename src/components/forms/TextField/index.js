@@ -9,29 +9,29 @@ const InputWrapper = styled.div`
 
 const Input = styled(Text)`
   width: 100%;
-  border: 1px solid #c100a5;
+  border: 1px solid #444;
   background-color: transparent;
   padding: 12px 16px;
   outline: 0;
   border-radius: 0px;
-  margin-bottom: 20px;
-  color: #fff;
+  margin-bottom: 10px;
+  color: #000;
   resize: none;
 
 &::-webkit-input-placeholder  {
-    color: #fff;
+    color: #000;
 }
     
 &::-moz-placeholder {
-    color: #fff;
+    color: #000;
 }
     
 &:-ms-input-placeholder  {
-    color: #fff;
+    color: #000;
 }
     
 &:-moz-placeholder  {
-    color: #fff;
+    color: #000;
 }
   
 `;

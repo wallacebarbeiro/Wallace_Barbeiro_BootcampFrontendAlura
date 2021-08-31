@@ -10,22 +10,14 @@ const WrapperContent = styled.div`
     align-items:center;
     justify-content:space-between; 
     
-    & h1 {
+    /* & h1 {
         text-align: center;
         color: #c100a5;
-    }
+    } */
     & h2 {
         text-align: center;
         color: #fff;
         display: inline-block;
-    }
-    section {
-        flex:1;
-        display:flex;
-        flex-wrap:wrap;
-        flex-direction:column;
-        align-items:center;
-        justify-content:center;
-    }
+    }   
 `;
 export default WrapperContent;

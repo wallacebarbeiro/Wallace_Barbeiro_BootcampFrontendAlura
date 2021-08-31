@@ -11,7 +11,7 @@ const ModalWrapper = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: stretch;
-  background: rgba(0,0,0,0.9);
+  background: rgba(0,0,0,0.3);
   position: fixed;
   top:0;
   left:0;
@@ -25,12 +25,8 @@ const ModalWrapper = styled.div`
   .box-motion {
     position:absolute;
     bottom:0px;
-    border-top-left-radius:5px;
-    border-top-right-radius:5px;
     padding: 10px 15px;
-    background-color: rgb(19 19 19);
-    -webkit-box-shadow: 0px 0px 11px 0px #010203, 6px 5px 0px 2px #00b795;
-    box-shadow: 0px 0px 11px 0px #010203, 6px 5px 0px 2px #00b795; 
+    background-color: white;  
 
     ${propToStyle('minWidth')}
   }

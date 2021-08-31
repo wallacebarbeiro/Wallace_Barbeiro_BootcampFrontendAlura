@@ -8,7 +8,7 @@ const TextContent = styled.div`
     ${propToStyle('display')}
     & p {margin: 0px;
     text-align: left;
-    color: #ffffff;
+    color: #444;
     font-size: 18px;
     font-weight: 300;
     padding: 0px 15px 15px 15px;

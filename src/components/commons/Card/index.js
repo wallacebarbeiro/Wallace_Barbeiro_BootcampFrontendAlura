@@ -1,6 +1,8 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import styled from 'styled-components';
 import propToStyle from '../../../theme/utils/propToStyle';
+import Box from '../../foundation/Box';
 import CardDestaque, { CardDestaqueContent } from '../CardDestaque';
 import CardImage from './CardImage';
 import CardText from './CardText';
@@ -12,25 +14,35 @@ const ContainerCard = styled.div`
     display:flex;
     flex-wrap:wrap;   
     flex-direction:row;    
-    background-color: rgb(19 19 19);
     width:100%;
-    border-radius: 10px;
-    overflow:hidden; 
-    -webkit-box-shadow: 0px 0px 11px 0px #010203, 6px 5px 0px 2px #00b795;
-    box-shadow: 0px 0px 11px 0px #010203, 6px 5px 0px 2px #00b795; 
+    overflow:hidden;
+    padding:10px;     
     ${propToStyle('justifyContent')} 
     ${propToStyle('alignItems')}  
+    &:hover{
+      transform: translateY(-10px);
+    }
+    transition: transform .3s ease-in-out;
+    &:hover .hoverEffect {
+      box-shadow: 0px 0px 0px 1px #e4168a, 2px 2px 0px 1px #f0f0f0, 4px 4px 0px 1px #00b795;
+    }
+    .hoverEffect {
+      transition: box-shadow .3s ease-in-out;
+    }
+    a {
+      width: 100%;
+    }
 `;
 
 const Wrapercard = styled.div`
     flex:1;
     display:flex;
-    flex-wrap:wrap;    
+    flex-wrap:wrap; 
     justify-content:flex-start;
     ${propToStyle('maxWidth')}
     ${propToStyle('alignItem')}
     ${propToStyle('flexDirection')}
-    ${propToStyle('gap')}
+    ${propToStyle('gap')}    
    
 `;
 
@@ -47,7 +59,7 @@ export default function Card() {
       }}
       gap={{
         xs: '32px',
-        md: '25px',
+        md: '5px',
       }}
       alignItems={{
         xs: 'center',
@@ -65,105 +77,155 @@ export default function Card() {
             md: 'flex-start',
           }}
         >
-          <CardDestaqueContent
-            flex="2"
-          >
-            <CardImage
-              minWidth="100%"
-              height={{
-                xs: '177px',
-                md: '320px',
+          <a href="#">
+            <Box
+              flexWrap="wrap"
+              backgroundColor="white"
+              display="flex"
+              flexDirection={{
+                xs: 'column',
+                md: 'row',
               }}
-              src="./images/49013742.png"
-              alt="img2"
-            />
-          </CardDestaqueContent>
-          <CardDestaqueContent
-            flex="1"
-            minWidth={{
-              xs: '100%',
-              md: '300px',
-            }}
-          >
-            <CardTitle
-              margin={{
-                xs: '24px auto',
-                md: '32px 0px 0px 0px',
-              }}
-              width={{
-                xs: 'auto',
-                lg: '130px',
-              }}
-              padding={{
-                xs: '0px',
-                md: '0px 15px',
-              }}
+              className="hoverEffect"
+              overflow="hidden"
+              maxWidth="100%"
+              boxShadow="0px 0px 0px 1px #444, 2px 2px 0px 1px #f0f0f0, 4px 4px 0px 1px #444"
             >
-              Projeto Destaque
-            </CardTitle>
-            <CardText
-              tag="p"
-              display={{
-                xs: 'none',
-                md: 'block',
-              }}
-            >
-              {`Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              <CardDestaqueContent>
+                <CardImage
+                  width="100%"
+                  minWidth="100%"
+                  height={{
+                    xs: '177px',
+                    md: '320px',
+                  }}
+                  src="./images/49013742.png"
+                  alt="img2"
+                />
+              </CardDestaqueContent>
+              <CardDestaqueContent
+                flex="1"
+                minWidth={{
+                  xs: '100%',
+                  md: 'auto',
+                }}
+              >
+                <CardTitle
+                  margin={{
+                    xs: '24px auto',
+                    md: '32px 0px 0px 0px',
+                  }}
+                  textAlign={{
+                    xs: 'center',
+                    md: 'left',
+                  }}
+                  width="auto"
+                  padding={{
+                    xs: '0px',
+                    md: '0px 15px',
+                  }}
+                >
+                  Projeto Destaque
+                </CardTitle>
+                <CardText
+                  tag="p"
+                  display={{
+                    xs: 'none',
+                    md: 'block',
+                  }}
+                >
+                  {`Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Duis sit amet efficitur purus, at suscipit ex.`}
-            </CardText>
-          </CardDestaqueContent>
+                </CardText>
+
+              </CardDestaqueContent>
+            </Box>
+          </a>
         </ContainerCard>
       </CardDestaque>
       <ContainerCard
         justifyContent="center"
         alignItems="center"
       >
-        <CardImage
-          minWidth="100%"
-          height={{
-            xs: '177px',
-            md: '390px',
-          }}
-          src="./images/179739191.png"
-          alt="img1"
-        />
-        <CardTitle>
-          Projeto 1
-        </CardTitle>
+        <a href="#">
+          <Box
+            backgroundColor="white"
+            className="hoverEffect"
+            overflow="hidden"
+            maxWidth="100%"
+            boxShadow="0px 0px 0px 1px #444, 2px 2px 0px 1px #f0f0f0, 4px 4px 0px 1px #444"
+          >
+            <CardImage
+              width="100%"
+              maxWidth="100%"
+              height={{
+                xs: '177px',
+                md: '390px',
+              }}
+              src="./images/179739191.png"
+              alt="img1"
+            />
+            <CardTitle>
+              Projeto 1
+            </CardTitle>
+          </Box>
+        </a>
       </ContainerCard>
       <ContainerCard
         justifyContent="center"
         alignItems="center"
       >
-        <CardImage
-          minWidth="100%"
-          height={{
-            xs: '177px',
-            md: '390px',
-          }}
-          src="./images/49013742.png"
-          alt="img2"
-        />
-        <CardTitle>
-          Projeto 2
-        </CardTitle>
+        <a href="#">
+          <Box
+            backgroundColor="white"
+            className="hoverEffect"
+            overflow="hidden"
+            maxWidth="100%"
+            boxShadow="0px 0px 0px 1px #444, 2px 2px 0px 1px #f0f0f0, 4px 4px 0px 1px #444"
+          >
+            <CardImage
+              width="100%"
+              maxWidth="100%"
+              height={{
+                xs: '177px',
+                md: '390px',
+              }}
+              src="./images/49013742.png"
+              alt="img2"
+            />
+            <CardTitle>
+              Projeto 2
+            </CardTitle>
+          </Box>
+        </a>
       </ContainerCard>
       <ContainerCard
         justifyContent="center"
         alignItems="center"
       >
-        <CardImage
-          minWidth="100%"
-          height={{
-            xs: '177px',
-            md: '390px',
-          }}
-          src="./images/179739191.png"
-          alt="img3"
-        />
-        <CardTitle>
-          Projeto 3
-        </CardTitle>
+        <a href="#">
+          <Box
+            backgroundColor="white"
+            className="hoverEffect"
+            overflow="hidden"
+            maxWidth="100%"
+            boxShadow="0px 0px 0px 1px #444, 2px 2px 0px 1px #f0f0f0, 4px 4px 0px 1px #444"
+          >
+            <CardImage
+              width="100%"
+              maxWidth="100%"
+              height={{
+                xs: '177px',
+                md: '390px',
+              }}
+              src="./images/179739191.png"
+              alt="img3"
+            />
+            <CardTitle>
+              Projeto 3
+            </CardTitle>
+          </Box>
+        </a>
       </ContainerCard>
     </Wrapercard>
   );
