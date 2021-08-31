@@ -37,55 +37,56 @@ function FormContent() {
 
   // eslint-disable-next-line max-len
   const isFormInvalid = userInfo.email.length === 0 || userInfo.nome.length === 0 || userInfo.message.length === 0;
+  const enviarForm = (event) => {
+    event.preventDefault();
+
+    setIsFormSubmited(true);
+
+    // Data Transfer Object
+    const userDTO = {
+      email: userInfo.email,
+      name: userInfo.nome,
+      message: userInfo.message,
+    };
+
+    fetch('https://contact-form-api-jamstack.herokuapp.com/message', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userDTO),
+    })
+      .then((resostaDoServidor) => {
+        if (resostaDoServidor.ok) {
+          return resostaDoServidor.json();
+        }
+        throw new Error('Não foi possível cadastrar');
+      })
+      .then((respostacompleta) => {
+        setSubmissionsStatus(formStates.DONE);
+        // eslint-disable-next-line no-console
+        console.log(respostacompleta);
+      })
+      .catch((error) => {
+        setSubmissionsStatus(formStates.ERROR);
+        // eslint-disable-next-line no-console
+        console.log(error);
+      })
+      .finally(() => {
+        setTimeout(() => {
+          setSubmissionsStatus(formStates.DEFAULT);
+        }, 5000);
+        setUserInfo({
+          email: '',
+          nome: '',
+          message: 'Digite a sua Mensagem!',
+        });
+      });
+  };
 
   return (
     <form
-      onSubmit={(event) => {
-        event.preventDefault();
-
-        setIsFormSubmited(true);
-
-        // Data Transfer Object
-        const userDTO = {
-          email: userInfo.email,
-          name: userInfo.nome,
-          message: userInfo.message,
-        };
-
-        fetch('https://contact-form-api-jamstack.herokuapp.com/message', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(userDTO),
-        })
-          .then((resostaDoServidor) => {
-            if (resostaDoServidor.ok) {
-              return resostaDoServidor.json();
-            }
-            throw new Error('Não foi possível cadastrar');
-          })
-          .then((respostacompleta) => {
-            setSubmissionsStatus(formStates.DONE);
-            // eslint-disable-next-line no-console
-            console.log(respostacompleta);
-          })
-          .catch((error) => {
-            setSubmissionsStatus(formStates.ERROR);
-            // eslint-disable-next-line no-console
-            console.log(error);
-          })
-          .finally(() => {
-            setTimeout(() => {
-              setSubmissionsStatus(formStates.DEFAULT);
-            }, 5000);
-            setUserInfo({
-              email: '',
-              nome: '',
-              message: 'Digite a sua Mensagem!',
-            });
-          });
-      }}
+      onSubmit={enviarForm}
     >
       <Box
         backgroundColor="transparent"
