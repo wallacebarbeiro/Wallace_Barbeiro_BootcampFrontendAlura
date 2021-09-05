@@ -30,7 +30,7 @@ const Container = styled.div`
    text-align: center;
 `;
 
-export default function WrapperProjetos({ isModalOpen, setModalState }) {
+export default function WrapperProjetos({ websitePageContext }) {
   return (
     <Section
       backgroundColor="#f0f0f0"
@@ -66,7 +66,7 @@ export default function WrapperProjetos({ isModalOpen, setModalState }) {
             fontWeight="300"
             marginBottom="55px"
             type="button"
-            onClick={() => setModalState(!isModalOpen)}
+            onClick={() => websitePageContext.toggleModalContato()}
           >
             <span>Entre em contato +</span>
           </BoxButton>
@@ -77,6 +77,6 @@ export default function WrapperProjetos({ isModalOpen, setModalState }) {
 }
 
 WrapperProjetos.propTypes = {
-  isModalOpen: PropTypes.bool.isRequired,
-  setModalState: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  websitePageContext: PropTypes.object.isRequired,
 };

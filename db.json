@@ -1,0 +1,25 @@
+{
+    "projects": [
+      {
+        "image": "https://i.imgur.com/OuW7vVT.png",
+        "title": "Instalura",
+        "description": "Projeto que usamos para aprender as funcionalidades durante o Bootcamp. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat nulla quis leo facilisis consectetur. In hac habitasse platea dictumst. Aenean sed risus in ipsum vehicula consequat ut nec mi. Pellentesque nec libero nec lorem vulputate accumsan ac et dui. Aenean quis pulvinar felis, ut mattis dui. Pellentesque fermentum arcu id turpis accumsan commodo. Maecenas dolor risus, malesuada vitae varius ut, finibus sed nisl. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean ornare, enim vel convallis tristique, tellus tellus finibus ex, sit amet placerat mauris sapien ac libero. Maecenas eu erat erat. Donec rhoncus id justo sit amet congue. Cras tincidunt eget sem non gravida. Sed ut massa egestas, imperdiet sem quis, placerat tortor. In maximus ultricies cursus.Maecenas tempus magna a orci cursus luctus. Ut at orci erat.",
+        "link": "https://github.com/wallacebarbeiro/instalura-base",
+        "slug": "instalura-base"
+      },
+      {
+        "image": "https://i.imgur.com/2WDbNZ0.png",
+        "title": "Alurakut",
+        "description": "Projeto feito durante a imersão React com NextJs.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat nulla quis leo facilisis consectetur. In hac habitasse platea dictumst. Aenean sed risus in ipsum vehicula consequat ut nec mi. Pellentesque nec libero nec lorem vulputate accumsan ac et dui. Aenean quis pulvinar felis, ut mattis dui. Pellentesque fermentum arcu id turpis accumsan commodo. Maecenas dolor risus, malesuada vitae varius ut, finibus sed nisl. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean ornare, enim vel convallis tristique, tellus tellus finibus ex, sit amet placerat mauris sapien ac libero. Maecenas eu erat erat. Donec rhoncus id justo sit amet congue. Cras tincidunt eget sem non gravida. Sed ut massa egestas, imperdiet sem quis, placerat tortor. In maximus ultricies cursus. Maecenas tempus magna a orci cursus luctus. Ut at orci erat.",
+        "link": "https://github.com/wallacebarbeiro/alurakut",
+        "slug": "alurakut"
+      },
+      {
+        "image": "https://i.imgur.com/zr22NV7.png",
+        "title": "Portfólio",
+        "description": "Projeto do Bootecamp Alura.Em desenvolvimento.... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat nulla quis leo facilisis consectetur. In hac habitasse platea dictumst. Aenean sed risus in ipsum vehicula consequat ut nec mi. Pellentesque nec libero nec lorem vulputate accumsan ac et dui. Aenean quis pulvinar felis, ut mattis dui. Pellentesque fermentum arcu id turpis accumsan commodo. Maecenas dolor risus, malesuada vitae varius ut, finibus sed nisl. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean ornare, enim vel convallis tristique, tellus tellus finibus ex, sit amet placerat mauris sapien ac libero. Maecenas eu erat erat. Donec rhoncus id justo sit amet congue. Cras tincidunt eget sem non gravida. Sed ut massa egestas, imperdiet sem quis, placerat tortor. In maximus ultricies cursus. Maecenas tempus magna a orci cursus luctus. Ut at orci erat.",
+        "link": "https://github.com/wallacebarbeiro/Wallace_Barbeiro_BootcampFrontendAlura",
+        "slug": "Wallace_Barbeiro_BootcampFrontendAlura"
+      }
+    ]
+  }

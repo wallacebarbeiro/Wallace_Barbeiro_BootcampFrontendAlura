@@ -1,38 +1,24 @@
 import React from 'react';
 import Capa from '../src/components/commons/Capa';
 import WrapperProjetos from '../src/components/commons/WrapperProjetos';
-import Box from '../src/components/foundation/Box';
-import Footer from '../src/components/commons/Footer';
-import Modal from '../src/components/commons/Modal';
-import FormCadastro from '../src/components/patterns/FormCadastro';
+import { WebsitePageContext } from '../src/components/wrappers/WebsitePage';
+import websitePageHOC from '../src/components/wrappers/WebsitePage/hoc';
 
-export default function Home() {
-  const [isModalOpen, setModalState] = React.useState(false);
-
+function HomeScreen() {
+  const websitePageContext = React.useContext(WebsitePageContext);
   return (
-    <Box
-      flex="1"
-      display="flex"
-      flexWwrap="wrap"
-      flexDirection="column"
-      justifyContent="space-between"
-    >
+    <>
       <Capa />
-      <WrapperProjetos isModalOpen={isModalOpen} setModalState={setModalState} />
-      <Footer />
-      <Modal
-        isOpen={isModalOpen}
-        onClose={() => {
-          setModalState(false);
-        }}
-      >
-        {(propsDoModal) => (
-          <FormCadastro
-            propsDoModal={propsDoModal}
-            setModalState={setModalState}
-          />
-        )}
-      </Modal>
-    </Box>
+      <WrapperProjetos websitePageContext={websitePageContext} />
+    </>
   );
 }
+
+export default websitePageHOC(HomeScreen, {
+  pageWrapperProps: {
+    seoProps: {
+      headTitle: 'Home',
+    },
+    pageBoxProps: {},
+  },
+});

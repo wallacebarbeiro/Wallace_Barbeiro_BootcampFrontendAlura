@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import WrapperContent from '../../foundation/WrapperContent';
-import Cabecalho from '../Cabecalho';
 import Text from '../../foundation/Text';
 import Box from '../../foundation/Box';
 
@@ -15,9 +14,6 @@ const CapaWrapper = styled.div`
     justify-content:center; 
     overflow:hidden;
     min-height: 100vh;
-    background-image: url(/images/bg.png);
-    background-size: cover;
-    background-position: center center;
     img {
         object-fit: cover;
         border-radius: 50%;
@@ -28,77 +24,105 @@ const CapaWrapper = styled.div`
 
 export default function Capa() {
   return (
-    <CapaWrapper>
-      <WrapperContent>
-        <Cabecalho />
-        <Box
-          backgroundColor="transparent"
-          display="flex"
-          height="100%"
-          margin="65px 0px 0px 0px"
-          flex="1"
-          alignItems="center"
-          maxWidth="900px"
-          gap="80px"
-          flexDirection={{
-            xs: 'column',
-            md: 'row',
-          }}
-          justifyContent={{
-            xs: 'flex-start',
-            md: 'space-between',
-          }}
-        >
-          <div>
-            <Text
-              tag="h1"
-              fontSize={{
-                xs: '44px',
-                md: '70px',
-              }}
+    <Box
+      flex="1"
+      minWidth="100%"
+      display="flex"
+      flexWwrap="wrap"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+      backgroundImage="url(/images/bg.png)"
+      backgroundSize="100% auto"
+      backgroundRepeat="no-repeat"
+      backgroundPosition="center center"
+    >
+      <Box
+        flex="1"
+      // display="flex"
+        flexWwrap="wrap"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+        padding="0px 16px 140px 16px"
+        gap="20px"
+        maxWidth="900px"
+      >
+        <CapaWrapper>
+          <WrapperContent>
+            <Box
+              backgroundColor="transparent"
+              display="flex"
+              height="100%"
               margin={{
-                xs: '160px 0px 0px 0px',
-                md: '0px',
+                xs: '25px 0px 95px 0px',
+                md: '65px 0px 0px 0px',
               }}
-              fontWeight="100 !important"
-              color="#6ecacb !important"
-            >
-              <Text
-                tag="span"
-                fontSize="35px"
-                margin="0"
-                textAlign={{
-                  xs: 'center',
-                  md: 'left',
-                }}
-                fontWeight="300"
-                display="block"
-                color="#444"
-              >
-                Olá, eu sou
-              </Text>
-
-              Wallace Barbeiro
-            </Text>
-            <Text
-              tag="p"
-              fontSize="22px"
-              display="block"
-              textAlign={{
-                xs: 'center',
-                md: 'right',
+              flex="1"
+              alignItems="center"
+              maxWidth="900px"
+              gap="80px"
+              flexDirection={{
+                xs: 'column',
+                md: 'row',
               }}
-              margin="10px 0px"
-              color="#444"
+              justifyContent={{
+                xs: 'flex-start',
+                md: 'space-between',
+              }}
             >
-              - Bem-vindo ao meu Portfólio!
-            </Text>
+              <div>
+                <Text
+                  tag="h1"
+                  fontSize={{
+                    xs: '44px',
+                    md: '66px',
+                  }}
+                  margin={{
+                    xs: '160px 0px 0px 0px',
+                    md: '0px',
+                  }}
+                  fontWeight="100 !important"
+                  color="#6ecacb !important"
+                >
+                  <Text
+                    tag="span"
+                    fontSize="35px"
+                    margin="0"
+                    textAlign={{
+                      xs: 'center',
+                      md: 'left',
+                    }}
+                    fontWeight="300"
+                    display="block"
+                    color="#444"
+                  >
+                    Olá, eu sou
+                  </Text>
 
-          </div>
+                  Wallace Barbeiro
+                </Text>
+                <Text
+                  tag="p"
+                  fontSize="22px"
+                  display="block"
+                  textAlign={{
+                    xs: 'center',
+                    md: 'right',
+                  }}
+                  margin="10px 0px"
+                  color="#444"
+                >
+                  - Bem-vindo ao meu Portfólio!
+                </Text>
 
-          <img src="https://github.com/wallacebarbeiro.png" alt="Minha imagem" />
-        </Box>
-      </WrapperContent>
-    </CapaWrapper>
+              </div>
+
+              <img src="https://github.com/wallacebarbeiro.png" alt="Minha imagem" />
+            </Box>
+          </WrapperContent>
+        </CapaWrapper>
+      </Box>
+    </Box>
   );
 }

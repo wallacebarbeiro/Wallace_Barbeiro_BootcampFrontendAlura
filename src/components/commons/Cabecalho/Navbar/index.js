@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-// eslint-disable-next-line import/no-unresolved
-import Link from 'next/link';
 import PropTypes from 'prop-types';
 import propToStyle from '../../../../theme/utils/propToStyle';
+import Text from '../../../foundation/Text';
 
 const NavList = styled.ul`    
     display: flex;
@@ -41,26 +40,52 @@ const NavList = styled.ul`
     }
 `;
 
-export default function Navbar({ links, ...props }) {
-  const linksKeys = Object.keys(links);
+export default function Navbar({
+  links,
+  ...props
+}) {
   return (
     <NavList
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
-      {linksKeys.map((link) => (
-        <li key={link}>
-          {' '}
-          <Link href={links[link]}>
-            <a href={links[link]}>{link}</a>
-          </Link>
-        </li>
-      ))}
+      {links.map((link) => {
+        if (link.texto !== 'home') {
+          return (
+            <li key={link.texto}>
+              <Text href={link.url}>
+                {link.texto}
+              </Text>
+            </li>
+          );
+        }
+        // if (link.texto === 'contato') {
+        //   return (
+        //     <li key={link.texto}>
+        //       <Text
+        //         padding="0px"
+        //         cursor="pointer"
+        //         backgroundColor="transparent"
+        //         border="0px"
+        //         fontSize="16px"
+        //         fontWeight="300"
+        //         textTransform="uppercase"
+        //         color="white"
+        //         tag="button"
+        //         // onClick={setModalState(!isModalOpen)}
+        //       >
+        //         {link.texto}
+        //       </Text>
+        //     </li>
+        //   );
+        // }
+        return false;
+      })}
     </NavList>
   );
 }
 
 Navbar.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
-  links: PropTypes.object.isRequired,
+  links: PropTypes.array.isRequired,
 };

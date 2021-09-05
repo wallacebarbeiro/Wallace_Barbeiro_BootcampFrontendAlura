@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import propToStyle from '../../../theme/utils/propToStyle';
 import Box from '../../foundation/Box';
+import Text from '../../foundation/Text';
 import CardDestaque, { CardDestaqueContent } from '../CardDestaque';
 import CardImage from './CardImage';
 import CardText from './CardText';
@@ -77,7 +78,7 @@ export default function Card() {
             md: 'flex-start',
           }}
         >
-          <a href="#">
+          <Text tag="a" href="#">
             <Box
               flexWrap="wrap"
               backgroundColor="white"
@@ -140,14 +141,14 @@ export default function Card() {
 
               </CardDestaqueContent>
             </Box>
-          </a>
+          </Text>
         </ContainerCard>
       </CardDestaque>
       <ContainerCard
         justifyContent="center"
         alignItems="center"
       >
-        <a href="#">
+        <Text tag="a" href="#">
           <Box
             backgroundColor="white"
             className="hoverEffect"
@@ -169,13 +170,13 @@ export default function Card() {
               Projeto 1
             </CardTitle>
           </Box>
-        </a>
+        </Text>
       </ContainerCard>
       <ContainerCard
         justifyContent="center"
         alignItems="center"
       >
-        <a href="#">
+        <Text tag="a" href="#">
           <Box
             backgroundColor="white"
             className="hoverEffect"
@@ -197,13 +198,13 @@ export default function Card() {
               Projeto 2
             </CardTitle>
           </Box>
-        </a>
+        </Text>
       </ContainerCard>
       <ContainerCard
         justifyContent="center"
         alignItems="center"
       >
-        <a href="#">
+        <Text tag="a" href="#">
           <Box
             backgroundColor="white"
             className="hoverEffect"
@@ -225,7 +226,7 @@ export default function Card() {
               Projeto 3
             </CardTitle>
           </Box>
-        </a>
+        </Text>
       </ContainerCard>
     </Wrapercard>
   );
