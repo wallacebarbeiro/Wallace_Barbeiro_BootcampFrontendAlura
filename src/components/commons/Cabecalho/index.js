@@ -5,12 +5,12 @@ import Navbar from './Navbar';
 
 const Header = styled.header`
   position: fixed;
-  z-index: 1; 
   width:100% ;
   background-color: #e4168a;
   padding: 10px;
   min-height: 20px;
   z-index: 2;
+  left:0px;
 `;
 
 const NavContainer = styled.nav`
@@ -23,6 +23,21 @@ const NavContainer = styled.nav`
   align-items: center;
 `;
 
+const links = [
+  {
+    texto: 'home',
+    url: '/',
+  },
+  {
+    texto: 'Sobre',
+    url: '/sobre',
+  },
+  {
+    texto: 'contato',
+    url: '/contato',
+  },
+];
+
 export default function Cabecalho() {
   return (
     <Header>
@@ -33,7 +48,7 @@ export default function Cabecalho() {
             xs: '20px',
             md: '22px',
           }}
-          href="https://github.com/wallacebarbeiro"
+          href={links[0].url}
         />
         <Navbar
           fontSize={{
@@ -41,7 +56,7 @@ export default function Cabecalho() {
             md: '16px',
           }}
           textTransform="uppercase"
-          links={{ Sobre: '/sobre', Contato: '/contato' }}
+          links={links}
         />
       </NavContainer>
     </Header>

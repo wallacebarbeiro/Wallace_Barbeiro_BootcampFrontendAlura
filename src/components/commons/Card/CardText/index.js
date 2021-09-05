@@ -9,7 +9,7 @@ const TextContent = styled.div`
     & p {margin: 0px;
     text-align: left;
     color: #444;
-    font-size: 18px;
+    /* font-size: 18px; */
     font-weight: 300;
     padding: 0px 15px 15px 15px;
     line-height: 1.5;

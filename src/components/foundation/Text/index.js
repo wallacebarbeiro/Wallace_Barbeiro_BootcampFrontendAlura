@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import styled, { css } from 'styled-components';
 import propToStyle from '../../../theme/utils/propToStyle';
+import Link from '../../commons/Link';
 
 export const TextStyleVariants = {
   smallestException: css`
@@ -29,9 +30,29 @@ const TextBase = styled.span`
   ${propToStyle('padding')}
   ${propToStyle('textAlign')}
   ${propToStyle('backgroundColor')}
+  ${propToStyle('flex')}
+  ${propToStyle('alignItems')}
+  ${propToStyle('justifyContent')}
+  ${propToStyle('textTransform')}
+  ${propToStyle('border')}
+  ${propToStyle('cursor')}
 `;
 
-export default function Text({ tag, children, ...props }) {
+export default function Text({
+  tag, children, href, ...props
+}) {
+  if (href) {
+    return (
+      <TextBase
+        as={Link}
+        href={href}
+      // eslint-disable-next-line react/jsx-props-no-spreading
+        {...props}
+      >
+        {children}
+      </TextBase>
+    );
+  }
   return (
     <TextBase
       as={tag}
@@ -47,10 +68,12 @@ Text.propTypes = {
   tag: PropTypes.string,
   variant: PropTypes.string,
   children: PropTypes.node,
+  href: PropTypes.string,
 };
 
 Text.defaultProps = {
   tag: 'span',
   variant: 'paragraph1',
   children: null,
+  href: '',
 };

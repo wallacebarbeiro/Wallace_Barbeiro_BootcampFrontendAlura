@@ -9,6 +9,7 @@ const Box = styled.div`
     background-image: linear-gradient(0deg, #4d0079 0%, #330f47 44%, #120822 100%); */
     ${propToStyle('background')}
     ${propToStyle('position')}
+    ${propToStyle('border')}
     ${propToStyle('display')}
     ${propToStyle('flex')}
     ${propToStyle('flexWrap')}
@@ -16,6 +17,7 @@ const Box = styled.div`
     ${propToStyle('justifyContent')}
     ${propToStyle('backgroundColor')}
     ${propToStyle('backgroundImage')}
+    ${propToStyle('backgroundRepeat')}    
     ${propToStyle('alignItems')}
     ${propToStyle('order')}
     ${propToStyle('minWidth')}
@@ -28,6 +30,9 @@ const Box = styled.div`
     ${propToStyle('borderTopLeftRadius')}
     ${propToStyle('borderTopRightRadius')}
     ${propToStyle('gap')}
+    ${propToStyle('backgroundSize')}
+    ${propToStyle('backgroundPosition')}
+    ${propToStyle('padding')}
 `;
 
 export default Box;
