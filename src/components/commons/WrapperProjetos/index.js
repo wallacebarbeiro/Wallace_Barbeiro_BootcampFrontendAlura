@@ -56,6 +56,7 @@ export default function WrapperProjetos({ websitePageContext }) {
           backgroundImage="none"
         >
           <BoxButton
+            id="btnContatoHome"
             backgroundColor="#6ecacb"
             color="#fff"
             fontSize="22px"

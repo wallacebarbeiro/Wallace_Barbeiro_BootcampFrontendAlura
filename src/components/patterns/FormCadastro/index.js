@@ -1,6 +1,8 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useCallback } from 'react';
 import { Lottie } from '@crello/react-lottie';
+import * as yup from 'yup';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import successAnimation from './animations/success.json';
@@ -9,83 +11,49 @@ import TextField from '../../forms/TextField';
 import Box from '../../foundation/Box';
 import Text from '../../foundation/Text';
 import BoxButton from '../../commons/Button';
+import { useForm } from '../../../infra/hooks/forms/useForm';
+import { contatoService } from '../../../services/contato/contatoService';
 
-const formStates = {
-  DEFAULT: 'DEFAULT',
-  DONE: 'DONE',
-  LOADING: 'LOADING',
-  ERROR: 'ERROR',
-};
+const contactSchema = yup.object().shape({
+  nome: yup.string().required('"Usuário" é obrigatório').min(3, 'Preencha ao menos 3 caracteres'),
+  email: yup.string().required('"Email" é obrigatório').min(4, 'Preencha ao menos 4 caracteres'),
+  message: yup.string().required('"Messagem" é obrigatória').min(10, ' Sua mensagem precisa ter ao menos 10 caracteres'),
+});
 
-function FormContent() {
-  const [insFormSubmited, setIsFormSubmited] = React.useState(false);
-  const [submissionsStatus, setSubmissionsStatus] = React.useState(formStates.DEFAULT);
-
-  const [userInfo, setUserInfo] = React.useState({
+export function FormContent({ onSubmit }) {
+  const initialValues = {
     email: '',
     nome: '',
-    message: 'Digite a sua Mensagem!',
-  });
+    message: '',
+  };
 
-  const handleChange = useCallback((event) => {
-    const fieldName = event.target.getAttribute('name');
-    setUserInfo({
-      ...userInfo,
-      [fieldName]: event.target.value,
-    });
+  const form = useForm({
+    initialValues,
+    onSubmit: (values, setSubmissionsStatus, formStates, setValues) => {
+      form.setIsFormSubmited(true);
+      form.setIsFormDisabled(true);
+      contatoService.contato(values, setSubmissionsStatus, formStates, setValues)
+        // eslint-disable-next-line no-console
+        .then(() => {})
+        .catch((err) => {
+          // eslint-disable-next-line no-console
+          console.error(err);
+        })
+        .finally(() => {
+          form.setIsFormDisabled(false);
+        });
+    },
+    async validadeSchema(values) {
+      return contactSchema.validate(values, {
+        abortEarly: false,
+      });
+    },
   });
-
-  // eslint-disable-next-line max-len
-  const isFormInvalid = userInfo.email.length === 0 || userInfo.nome.length === 0 || userInfo.message.length === 0;
 
   return (
     <form
-      onSubmit={(event) => {
-        event.preventDefault();
-
-        setIsFormSubmited(true);
-
-        // Data Transfer Object
-        const userDTO = {
-          email: userInfo.email,
-          name: userInfo.nome,
-          message: userInfo.message,
-        };
-
-        fetch('https://contact-form-api-jamstack.herokuapp.com/message', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(userDTO),
-        })
-          .then((resostaDoServidor) => {
-            if (resostaDoServidor.ok) {
-              return resostaDoServidor.json();
-            }
-            throw new Error('Não foi possível cadastrar');
-          })
-          .then((respostacompleta) => {
-            setSubmissionsStatus(formStates.DONE);
-            // eslint-disable-next-line no-console
-            console.log(respostacompleta);
-          })
-          .catch((error) => {
-            setSubmissionsStatus(formStates.ERROR);
-            // eslint-disable-next-line no-console
-            console.log(error);
-          })
-          .finally(() => {
-            setTimeout(() => {
-              setSubmissionsStatus(formStates.DEFAULT);
-            }, 5000);
-            setUserInfo({
-              email: '',
-              nome: '',
-              message: 'Digite a sua Mensagem!',
-            });
-          });
-      }}
+      id="formCadastro"
+      onSubmit={onSubmit || form.handleSubmit}
     >
       <Box
         backgroundColor="transparent"
@@ -111,10 +79,13 @@ function FormContent() {
             Seu Nome
           </Text>
           <TextField
-            placeholder=""
+            placeholder="Seu nome"
             name="nome"
-            value={userInfo.nome}
-            onChange={handleChange}
+            value={form.values.nome}
+            isTouched={form.touched.nome}
+            onChange={form.handleChange}
+            error={form.errors.nome}
+            onBlur={form.handleBlur}
           />
         </label>
 
@@ -129,10 +100,13 @@ function FormContent() {
           </Text>
           <TextField
             type="email"
-            placeholder=""
+            placeholder="Seu email"
             name="email"
-            value={userInfo.email}
-            onChange={handleChange}
+            value={form.values.email}
+            isTouched={form.touched.email}
+            onChange={form.handleChange}
+            error={form.errors.email}
+            onBlur={form.handleBlur}
           />
         </label>
       </div>
@@ -148,14 +122,18 @@ function FormContent() {
           <TextField
             tag="textarea"
             type=""
-            placeholder=""
+            placeholder="Mensagem"
             name="message"
-            value={userInfo.message}
-            onChange={handleChange}
+            value={form.values.message}
+            isTouched={form.touched.message}
+            onChange={form.handleChange}
+            error={form.errors.message}
+            onBlur={form.handleBlur}
           />
         </label>
       </div>
       <BoxButton
+        id="btnEnviarContato"
         border="1px solid #fff"
         backgroundColor="#6ecacb"
         color="#fff"
@@ -167,22 +145,24 @@ function FormContent() {
         marginBottom="10px"
         cursor="pointer"
         type="submit"
-        disabled={isFormInvalid}
+        disabled={form.isFormDisabled}
       >
         Enviar
       </BoxButton>
-      {insFormSubmited && submissionsStatus === formStates.DONE && (
-      <div style={{
-        position: 'absolute',
-        top: '0px',
-        height: '100%',
-        background: 'rgb(255 255 255 / 78%)',
-        width: '100%',
-        left: '0px',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
+      {form.insFormSubmited && form.submissionsStatus === form.formStates.DONE && (
+      <div
+        className="successMsg"
+        style={{
+          position: 'absolute',
+          top: '0px',
+          height: '100%',
+          background: 'rgb(255 255 255 / 78%)',
+          width: '100%',
+          left: '0px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
       >
         <Lottie
           width="250px"
@@ -192,8 +172,9 @@ function FormContent() {
         />
       </div>
       )}
-      {insFormSubmited && submissionsStatus === formStates.ERROR && (
+      {form.insFormSubmited && form.submissionsStatus === form.formStates.ERROR && (
       <div
+        className="errorMsg"
         style={{
           position: 'absolute',
           top: '0px',
@@ -263,4 +244,12 @@ FormCadastro.propTypes = {
 
 FormCadastro.defaultProps = {
   propsDoModal: {},
+};
+
+FormContent.defaultProps = {
+  onSubmit: undefined,
+};
+
+FormContent.propTypes = {
+  onSubmit: PropTypes.func,
 };
