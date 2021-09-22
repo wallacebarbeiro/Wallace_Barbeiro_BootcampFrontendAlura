@@ -16,7 +16,7 @@ const WrapperSobre = styled.div`
 `;
 
 const BoxImagem = styled.div`
-    margin-top:15vh;
+    margin-top:150px;
     margin-bottom:-100px;
     text-align:center;
     position: relative;
@@ -199,7 +199,6 @@ export default function Sobre({ projetos }) {
                     gap="10px"
                   >
                     {projetos.map((projeto, index) => (
-
                       <Box
                         backgroundColor="white"
                         display="flex"
@@ -232,7 +231,7 @@ export default function Sobre({ projetos }) {
                           alignItems="center"
                           href={`/projeto/${projeto.name}`}
                         >
-                          {projeto.name}
+                          {projeto.name.length < 35 ? projeto.name : projeto.name.substring(0, 20)}
                         </Text>
                         <Text
                           color="white"

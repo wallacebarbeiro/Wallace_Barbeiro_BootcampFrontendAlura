@@ -17,21 +17,22 @@ const Input = styled(Text)`
   margin-bottom: 10px;
   color: #000;
   resize: none;
+  
 
 &::-webkit-input-placeholder  {
-    color: #000;
+    color: #ccc;
 }
     
 &::-moz-placeholder {
-    color: #000;
+    color: #ccc;
 }
     
 &:-ms-input-placeholder  {
-    color: #000;
+    color: #ccc;
 }
     
 &:-moz-placeholder  {
-    color: #000;
+    color: #ccc;
 }
   
 `;
@@ -48,7 +49,12 @@ export default function TextField({
   value,
   tag,
   type,
+  error,
+  isTouched,
+  ...props
 }) {
+  const hasError = Boolean(error);
+  const isFieldInvalid = hasError && isTouched;
   return (
     <InputWrapper>
       <Input
@@ -58,7 +64,19 @@ export default function TextField({
         name={name}
         onChange={onChange}
         value={value}
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...props}
       />
+      { isFieldInvalid && (
+        <Text
+          margin="0px"
+          fontSize="12px"
+          color="red"
+          role="alert"
+        >
+          {error}
+        </Text>
+      )}
     </InputWrapper>
   );
 }
@@ -70,9 +88,13 @@ TextField.propTypes = {
   value: PropTypes.string.isRequired,
   type: PropTypes.string,
   tag: PropTypes.string,
+  isTouched: PropTypes.bool,
+  error: PropTypes.string,
 };
 
 TextField.defaultProps = {
   tag: 'input',
   type: 'text',
+  error: '',
+  isTouched: false,
 };
