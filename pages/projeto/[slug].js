@@ -1,14 +1,11 @@
 import React from 'react';
+
 import websitePageHOC from '../../src/components/wrappers/WebsitePage/hoc';
-import Projeto from '../../src/components/screens/ProjetoScreen';
-import projects from '../../db.json';
+import Projeto, { getContent } from '../../src/components/screens/ProjetoScreen';
 
 function PageProjeto({ projectInfo }) {
   return (
     <>
-      {/* <pre>
-        {JSON.stringify(props, null, 4)}
-      </pre> */}
       <Projeto projectInfo={projectInfo} />
     </>
 
@@ -20,15 +17,15 @@ PageProjeto.propTypes = Projeto.propTypes;
 export default websitePageHOC(PageProjeto);
 
 export async function getStaticProps({ params }) {
-  const projectsList = projects.projects;
+  const projectsPage = await getContent();
 
-  //   console.log(params.slug)
+  const projectsList = projectsPage.allPageProjetos;
 
   const dadosDoProjeto = projectsList.reduce((valorAcumulado, elemento) => {
     const toArray = [];
     toArray.push(elemento);
     const dados = toArray.find((item) => {
-      if (item.slug === params.slug) {
+      if (item.projectSlug === params.slug) {
         return true;
       }
       return false;
@@ -48,7 +45,7 @@ export async function getStaticProps({ params }) {
       projectInfo: dadosDoProjeto.info,
       pageWrapperProps: {
         seoProps: {
-          headTitle: dadosDoProjeto.info.title,
+          headTitle: dadosDoProjeto.info.projectTitle,
         },
       },
     },
@@ -56,11 +53,11 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const projectsList = projects.projects;
+  const projectsPage = await getContent();
 
-  const paths = projectsList.reduce((valorAcumulado, elemento) => [
+  const paths = projectsPage.allPageProjetos.reduce((valorAcumulado, elemento) => [
     ...valorAcumulado,
-    { params: { slug: elemento.slug } },
+    { params: { slug: elemento.projectSlug } },
   ], []);
 
   return {
