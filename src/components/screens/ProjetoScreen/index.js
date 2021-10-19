@@ -6,6 +6,8 @@ import Box from '../../foundation/Box';
 import Grid from '../../foundation/layout/Grid';
 import Text from '../../foundation/Text';
 
+export { getContent } from './getContent';
+
 const WrapperProjeto = styled.div`
     .gloweffect img{
         transition: box-shadow .3s ease-in-out;
@@ -71,7 +73,7 @@ export default function Projeto({ projectInfo }) {
                   flex={1}
                 >
                   <BoxImagem>
-                    <img src={projectInfo.image} alt="Minha imagem" />
+                    <img src={projectInfo.projectImage.url} alt="Minha imagem" />
                   </BoxImagem>
                 </Grid.Col>
               </Grid.Row>
@@ -95,7 +97,7 @@ export default function Projeto({ projectInfo }) {
                     textAlign="center"
                     fontWeight="300"
                   >
-                    {projectInfo.title}
+                    {projectInfo.projectTitle}
                   </Text>
                 </Grid.Col>
                 <Grid.Col
@@ -108,8 +110,15 @@ export default function Projeto({ projectInfo }) {
                     color="#444"
                     fontWeight="300"
                     textAlign="justify"
+
                   >
-                    {projectInfo.description}
+                    <Box
+                      as="span"
+                      dangerouslySetInnerHTML={{
+                        __html: projectInfo.projectDescription,
+                      }}
+                    />
+
                   </Text>
 
                 </Grid.Col>
@@ -147,7 +156,7 @@ export default function Projeto({ projectInfo }) {
                       padding="5px"
                       justifyContent="center"
                       alignItems="center"
-                      href={projectInfo.link}
+                      href={projectInfo.projectLink}
                     >
                       Visitar repositório
                     </Text>
@@ -181,9 +190,11 @@ export default function Projeto({ projectInfo }) {
 
 Projeto.propTypes = {
   projectInfo: PropTypes.shape({
-    image: PropTypes.string,
-    title: PropTypes.string,
-    description: PropTypes.string,
-    link: PropTypes.string,
+    projectImage: PropTypes.shape({
+      url: PropTypes.string,
+    }),
+    projectTitle: PropTypes.string,
+    projectDescription: PropTypes.string,
+    projectLink: PropTypes.string,
   }).isRequired,
 };
